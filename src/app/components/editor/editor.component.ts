@@ -5,6 +5,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.scss']
 })
+
+// let undoCount:number = 0;
+
 export class EditorComponent implements OnInit {
 
   constructor() { }
@@ -12,12 +15,54 @@ export class EditorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  test(event: any) {
+  paste(event: any) {
     let pastedData:any = event.clipboardData.getData('Text');
-    const el:any = document.getElementById('text-box');
     event.preventDefault();
-    console.log(pastedData);
-    // insertTextAtCursor(el, pastedData);
+    document.execCommand("insertText", false, pastedData);
+  }
+
+  bold() {
+    document.execCommand("bold", false);
+  }
+
+  italic() {
+    document.execCommand("italic", false);
+  }
+
+  underline() {
+    document.execCommand("underline", false);
+  }
+
+  justify() {
+    document.execCommand("justifyFull", false)
+  }
+
+  justifyCenter() {
+    document.execCommand("justifyCenter", false);
+  }
+
+  justifyLeft() {
+    document.execCommand("justifyLeft", false);
+  }
+
+  justifyRight() {
+    document.execCommand("justifyRight", false);
+  }
+
+  orderedList() {
+    document.execCommand("insertOrderedList", false)
+  }
+
+  unorderedList() {
+    document.execCommand("insertUnorderedList", false)
+  }
+
+  redo() {
+    document.execCommand("redo", false);
+  }
+
+  undo() {
+    document.execCommand("undo", false);
   }
 
 }
