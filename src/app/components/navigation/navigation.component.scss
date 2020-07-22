@@ -1,3 +1,5 @@
+@import '~@angular/material/theming';
+
 .example-container {
   display: flex;
   flex-direction: column;
@@ -11,7 +13,14 @@
 .example-is-mobile .example-toolbar {
   position: fixed;
   /* Make sure the toolbar will stay on top of the content as it scrolls past. */
-  z-index: 2;
+
+}
+
+.example-toolbar {
+  border-bottom: 5px solid red;
+  @include mat-elevation-transition;
+  @include mat-elevation(8);
+  margin-bottom: 25px;
 }
 
 h1.example-app-name {
