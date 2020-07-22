@@ -1,20 +1,20 @@
 <div>
-  <button mat-icon-button><mat-icon aria-hidden="false" aria-label="">undo</mat-icon></button>
-  <button mat-icon-button><mat-icon aria-hidden="false" aria-label="">redo</mat-icon></button>
+  <button mat-icon-button (click)="undo()"><mat-icon aria-hidden="false" aria-label="">undo</mat-icon></button>
+  <button mat-icon-button (click)="redo()"><mat-icon aria-hidden="false" aria-label="">redo</mat-icon></button>
   |
-  <button mat-icon-button><mat-icon aria-hidden="false" aria-label="">format_bold</mat-icon></button>
-  <button mat-icon-button><mat-icon aria-hidden="false" aria-label="">format_italic</mat-icon></button>
-  <button mat-icon-button><mat-icon aria-hidden="false" aria-label="">format_underline</mat-icon></button>
+  <button mat-icon-button (click)="bold()"><mat-icon aria-hidden="false" aria-label="">format_bold</mat-icon></button>
+  <button mat-icon-button (click)="italic()"><mat-icon aria-hidden="false" aria-label="">format_italic</mat-icon></button>
+  <button mat-icon-button (click)="underline()"><mat-icon aria-hidden="false" aria-label="">format_underline</mat-icon></button>
   |
-  <button mat-icon-button><mat-icon aria-hidden="false" aria-label="">format_align_left</mat-icon></button>
-  <button mat-icon-button><mat-icon aria-hidden="false" aria-label="">format_align_center</mat-icon></button>
-  <button mat-icon-button><mat-icon aria-hidden="false" aria-label="">format_align_right</mat-icon></button>
-  <button mat-icon-button><mat-icon aria-hidden="false" aria-label="">format_align_justify</mat-icon></button>
+  <button mat-icon-button (click)="justifyLeft()"><mat-icon aria-hidden="false" aria-label="">format_align_left</mat-icon></button>
+  <button mat-icon-button (click)="justifyCenter()"><mat-icon aria-hidden="false" aria-label="">format_align_center</mat-icon></button>
+  <button mat-icon-button (click)="justifyRight()"><mat-icon aria-hidden="false" aria-label="">format_align_right</mat-icon></button>
+  <button mat-icon-button (click)="justify()"><mat-icon aria-hidden="false" aria-label="">format_align_justify</mat-icon></button>
   |
-  <button mat-icon-button><mat-icon aria-hidden="false" aria-label="">format_list_numbered</mat-icon></button>
-  <button mat-icon-button><mat-icon aria-hidden="false" aria-label="">format_list_bulleted</mat-icon></button>
+  <button mat-icon-button (click)="orderedList()"><mat-icon aria-hidden="false" aria-label="">format_list_numbered</mat-icon></button>
+  <button mat-icon-button (click)="unorderedList()"><mat-icon aria-hidden="false" aria-label="">format_list_bulleted</mat-icon></button>
 </div>
-<div contenteditable="true" (paste)="test($event)" id="text-box">Div Content Here</div>
+<div contenteditable="true" (paste)="paste($event)" id="text-box">Div Content Here</div>
 <div>
   <button mat-icon-button><mat-icon aria-hidden="false" aria-label="">save</mat-icon></button>
   <button mat-icon-button><mat-icon aria-hidden="false" aria-label="">delete_forever</mat-icon></button>

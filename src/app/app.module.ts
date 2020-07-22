@@ -34,8 +34,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatListModule,
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule,
-    insertTextAtCursor
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
