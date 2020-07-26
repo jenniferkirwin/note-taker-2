@@ -1,0 +1,10 @@
+@import '~@angular/material/theming';
+
+.navbar {
+  @include mat-elevation(8);
+}
+
+.spacer {
+  flex: 1 1 auto;
+  z-index: 999;
+}
