@@ -121,8 +121,13 @@
               "devServerTarget": "note-taker-two:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "note-taker-two"
 }

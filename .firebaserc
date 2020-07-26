@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "note-taker-db6f5"
+  },
+  "targets": {
+    "note-taker-db6f5": {
+      "hosting": {
+        "note-taker-two": [
+          "note-taker-db6f5"
+        ]
+      }
+    }
   }
 }
