@@ -1,6 +1,10 @@
 @import '~@angular/material/theming';
 
-.example-container {
+.spacer {
+  flex: 1 1 auto;
+}
+
+.nav-container {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -10,31 +14,28 @@
   right: 0;
 }
 
-.example-is-mobile .example-toolbar {
+.nav-is-mobile .nav-toolbar {
   position: fixed;
-  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
-
 }
 
-.example-toolbar {
-  border-bottom: 5px solid red;
+.nav-toolbar {
   @include mat-elevation-transition;
   @include mat-elevation(8);
-  margin-bottom: 25px;
 }
 
-h1.example-app-name {
+h1.nav-app-name {
   margin-left: 8px;
 }
 
-.example-sidenav-container {
-  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+.nav-sidenav-container {
   flex: 1;
+  z-index: -999;
 }
 
-.example-is-mobile .example-sidenav-container {
-  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
-     `<body>` to be our scrolling element for mobile layouts. */
+.nav-is-mobile .nav-sidenav-container {
   flex: 1 0 auto;
+}
+
+.login-btns button {
+  margin-left: 15px;
 }
