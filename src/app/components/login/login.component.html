@@ -1,0 +1,19 @@
+<!-- <p>login works!</p>
+<div *ngIf="auth.user | async as user; else showLogin">
+  <h1>Hello {{ user.displayName }}!</h1>
+  <button (click)="logout()">Logout</button>
+</div> -->
+<!-- <ng-template #showLogin>
+  <p>Please login.</p>
+  <input #userEmail placeholder="Email">
+  <input #userPassword placeholder="Password">
+  <button (click)="test(userEmail.value, userPassword.value)">Login with Google</button>
+</ng-template> -->
+
+<div>
+  <p>Please login.</p>
+  <input #userEmail placeholder="Email">
+  <input #userPassword placeholder="Password">
+  <button (click)="login(userEmail.value, userPassword.value)">Login</button>
+  <button (click)="logout()">Logout</button>
+</div>
