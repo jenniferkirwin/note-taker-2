@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginPopupService } from './service/login-popup.service';
+import { AuthService } from './service/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,5 @@ import { LoginPopupService } from './service/login-popup.service';
 export class AppComponent {
   title = 'note-taker-two';
 
-  constructor(public loginPopupService: LoginPopupService) { }
+  constructor(public loginPopupService: LoginPopupService, public authService: AuthService) { }
 }
