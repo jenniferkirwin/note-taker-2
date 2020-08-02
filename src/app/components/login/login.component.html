@@ -37,7 +37,7 @@
     </div>
   </div>
   
-  <button (click)="login(userEmail.value, userPassword.value)">Login</button>
-  <button (click)="logout()">Logout</button>
+  <button (click)="authService.login(userEmail.value, userPassword.value)">Login</button>
+  <button (click)="authService.logout()">Logout</button>
   <button (click)="loginPopupService.toggleLogin()">Close</button>
 </div>

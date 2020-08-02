@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginPopupService } from '../../service/login-popup.service';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +9,7 @@ import { LoginPopupService } from '../../service/login-popup.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public loginPopupService: LoginPopupService) { }
+  constructor(public authService: AuthService, public loginPopupService: LoginPopupService) { }
 
   ngOnInit(): void {
   }
