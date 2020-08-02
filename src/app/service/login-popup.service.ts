@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class LoginPopupService {
 
-  showLogin: boolean = true;
+  showLogin: boolean = false;
 
   toggleLogin() {
     this.showLogin = !this.showLogin;
