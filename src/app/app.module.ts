@@ -9,6 +9,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { EditorComponent } from './components/editor/editor.component';
 import { LoginComponent } from './components/login/login.component';
 
+import { LoginPopupService } from './service/login-popup.service';
+
 //Firebase Auth
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
@@ -52,7 +54,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatIconModule,
     MatButtonModule,
   ],
-  providers: [],
+  providers: [LoginPopupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

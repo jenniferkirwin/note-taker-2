@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginPopupService } from './service/login-popup.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'note-taker-two';
+
+  constructor(public loginPopupService: LoginPopupService) { }
 }

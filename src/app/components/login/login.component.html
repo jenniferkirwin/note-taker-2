@@ -1,16 +1,4 @@
-<!-- <p>login works!</p>
-<div *ngIf="auth.user | async as user; else showLogin">
-  <h1>Hello {{ user.displayName }}!</h1>
-  <button (click)="logout()">Logout</button>
-</div> -->
-<!-- <ng-template #showLogin>
-  <p>Please login.</p>
-  <input #userEmail placeholder="Email">
-  <input #userPassword placeholder="Password">
-  <button (click)="test(userEmail.value, userPassword.value)">Login with Google</button>
-</ng-template> -->
-
-<div class="login-div animate__animated animate__slideInLeft">
+<div class="login-div animate__animated" [ngClass]="{'animate__slideInLeft' : loginPopupService.showLogin, 'animate__slideOutLeft' : !loginPopupService.showLogin}">
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
@@ -51,4 +39,5 @@
   
   <button (click)="login(userEmail.value, userPassword.value)">Login</button>
   <button (click)="logout()">Logout</button>
+  <button (click)="loginPopupService.toggleLogin()">Close</button>
 </div>
