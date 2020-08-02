@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginPopupService } from '../../service/login-popup.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 
@@ -9,7 +10,7 @@ import { auth } from 'firebase/app';
 })
 export class LoginComponent {
 
-  constructor(public auth: AngularFireAuth) {
+  constructor(public auth: AngularFireAuth, public loginPopupService: LoginPopupService) {
   }
   login(email: string, password: string) {
     // this.auth.signInWithPopup(new auth.GoogleAuthProvider());
