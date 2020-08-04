@@ -21,7 +21,11 @@
 
 .login-card {
   margin-bottom: 15px;
-  // @media only screen and (min-width: 768px) {
-  //   min-height: 300px;
-  // }
+  @media only screen and (min-width: 768px) {
+    max-width: 425px;
+  }
+}
+
+.login-tab {
+  margin-top: 15px;
 }
