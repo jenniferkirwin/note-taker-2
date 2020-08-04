@@ -1,43 +1,53 @@
 <div class="login-div animate__animated" [ngClass]="{'animate__slideInLeft' : loginPopupService.showLogin, 'animate__slideOutLeft' : !loginPopupService.showLogin}">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
-        <h3>Login To Save Your Note</h3>
+      <div class="col-12 text-center">
+        <button mat-button (click)="loginPopupService.toggleLogin()" class="close-btn"><mat-icon aria-hidden="false" aria-label="">close</mat-icon></button>
+        <h2 class="mat-display-2 text-center">Login to save your notes...</h2>
+      </div>
+
+      <div class="col-sm-12 col-md-12">
+        <mat-card class="login-card">
+          <mat-tab-group mat-align-tabs="start">
+            <mat-tab label="First">Content 1</mat-tab>
+            <mat-tab label="Second">Content 2</mat-tab>
+            <mat-tab label="Third">Content 3</mat-tab>
+          </mat-tab-group>
+        </mat-card>
+      </div>
+
+      <div class="col-sm-12 col-md-6">
+        <mat-card class="login-card">
+          <h2 class="mat-h2">Have an account? Login here...</h2>
+          <form>
+            <mat-form-field class="full-width">
+              <mat-label>E-Mail</mat-label>
+              <input matInput #userEmail placeholder="Ex. hello@mail.com" type="email" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Password</mat-label>
+              <input matInput #userPassword placeholder="Ex. $uper$ecret123!" type="password" required>
+            </mat-form-field>
+          </form>
+          <button mat-flat-button color="primary" (click)="authService.login(userEmail.value, userPassword.value)">Login</button>
+        </mat-card>
       </div>
       <div class="col-sm-12 col-md-6">
-        <p>Have an account? Login here...</p>
-        <form>
-          <mat-form-field class="full-width">
-            <mat-label>E-Mail</mat-label>
-            <input matInput #userEmail placeholder="Ex. hello@mail.com" type="email" required>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <mat-label>Password</mat-label>
-            <input matInput #userPassword placeholder="Ex. $uper$ecret123!" type="password" required>
-          </mat-form-field>
-        </form>
-      </div>
-      <div class="col-sm-12 col-md-6">
-        <p>No account? Make one here!</p>
-        <form>
-          <mat-form-field class="full-width">
-            <mat-label>E-Mail</mat-label>
-            <input matInput #newUserEmail placeholder="Ex. hello@mail.com" required>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <mat-label>Password</mat-label>
-            <input matInput #newUserPassword placeholder="Ex. $uper$ecret123!" type="password" required>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <mat-label>Verify Password</mat-label>
-            <input matInput #newUserPassword2 placeholder="Ex. $uper$ecret123!" type="password" required>
-          </mat-form-field>
-        </form>
+        <mat-card class="login-card">
+          <h2 class="mat-h2">No account? Make one here!</h2>
+          <form>
+            <mat-form-field class="full-width">
+              <mat-label>E-Mail</mat-label>
+              <input matInput #newUserEmail placeholder="Ex. hello@mail.com" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Password</mat-label>
+              <input matInput #newUserPassword placeholder="Ex. $uper$ecret123!" type="password" required>
+            </mat-form-field>
+          </form>
+          <button mat-flat-button color="primary">Create Account</button>
+        </mat-card>
       </div>
     </div>
   </div>
-  
-  <button (click)="authService.login(userEmail.value, userPassword.value)">Login</button>
-  <button (click)="authService.logout()">Logout</button>
-  <button (click)="loginPopupService.toggleLogin()">Close</button>
 </div>
