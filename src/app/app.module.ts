@@ -8,8 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { EditorComponent } from './components/editor/editor.component';
 import { LoginComponent } from './components/login/login.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 import { LoginPopupService } from './service/login-popup.service';
+
 
 //Firebase Auth
 import { AngularFireModule } from "@angular/fire";
@@ -26,7 +28,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 @NgModule({
@@ -53,6 +56,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
+    MatCardModule,
+    MatTabsModule,
   ],
   providers: [LoginPopupService],
   bootstrap: [AppComponent]
