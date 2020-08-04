@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from  "@angular/router";
 import { AngularFireAuth } from '@angular/fire/auth';
-// import { auth } from 'firebase/app';
 import { LoginPopupService } from './login-popup.service';
 
 @Injectable({
@@ -31,6 +30,26 @@ export class AuthService {
     .then((result) => {
       console.log('Login Successful');
       // localStorage.setItem('email', JSON.stringify(result.user.email));
+      this.userEmail = result.user.email;
+      this.loginPopupService.toggleLogin();
+    })
+    .catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      if (errorCode === 'auth/wrong-password') {
+        alert('Wrong password.');
+      } else {
+        alert(errorMessage);
+      }
+      console.log(error);
+    });
+  }
+
+  createUser(email: string, password: string) {
+    this.auth.createUserWithEmailAndPassword(email, password)
+    .then((result) => {
+      console.log('User Creation Successful');
       this.userEmail = result.user.email;
       this.loginPopupService.toggleLogin();
     })

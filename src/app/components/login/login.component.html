@@ -38,7 +38,7 @@
                   <input matInput #newUserPassword2 placeholder="Ex. $uper$ecret123!" type="password" required>
                 </mat-form-field>
               </form>
-              <button mat-flat-button color="primary">Create Account</button>
+              <button mat-flat-button color="primary" (click)="authService.createUser(newUserEmail.value, newUserPassword.value)">Create Account</button>
             </mat-tab>
           </mat-tab-group>
         </mat-card>
