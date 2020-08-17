@@ -11,6 +11,8 @@ admin.initializeApp();
 // -------------------------------------------------------------------------
 // -------------------------------------------------------------------------
 
+// Create a user in Firestore when a new account is made
+// -------------------------------------------------------------------------
 exports.createUserAccnt = functions.auth.user().onCreate((user) => {
 
   db.collection('users').doc(`${user.uid}`)
@@ -29,40 +31,63 @@ exports.createUserAccnt = functions.auth.user().onCreate((user) => {
 
 });
 
-exports.addMessage = functions.https.onCall((data, context) => {
+// Get user's saved notes
+// -------------------------------------------------------------------------
+exports.getNotes = functions.https.onCall((data, context) => {
 
-  // [START readMessageData]
-  const text = data.text;
-  // [END readMessageData]
-
-  // [START messageHttpsErrors]
-  if (!(typeof text === 'string') || text.length === 0) {
-    throw new functions.https.HttpsError('invalid-argument', 'The function must be called with ' +
-        'one arguments "text" containing the message text to add.');
-  }
+  // Ensure user is authenticated
   if (!context.auth) {
     throw new functions.https.HttpsError('failed-precondition', 'The function must be called ' +
         'while authenticated.');
   }
-  // [END messageHttpsErrors]
 
-  // [START authIntegration]
-  const uid = context.auth.uid;
-  const name = context.auth.token.name || null;
-  const picture = context.auth.token.picture || null;
-  const email = context.auth.token.email || null;
-  // [END authIntegration]
+  // Constants
 
-  // [START returnMessageAsync]
-  const sanitizedMessage = sanitizer.sanitizeText(text); // Sanitize the message.
-  return admin.database().ref('/messages').push({
-    text: sanitizedMessage,
-    author: { uid, name, picture, email },
-  }).then(() => {
-    console.log('New Message written');
-    return { text: sanitizedMessage };
-  }).catch((error) => {
-      throw new functions.https.HttpsError('unknown', error.message, error);
-    });
-  // [END_EXCLUDE]
+  // Query Database
+
+  db.collection('users').doc(`${context.auth.uid}`)
+  .get()
+  .then((querySnapshot) => {
+    console.log(querySnapshot)
+    return querySnapshot;
+  })
+  .catch((error) => {
+      console.log("Error getting documents: ", error);
+      return error;
+  });
+
+
+  // // [START readMessageData]
+  // const text = data.text;
+  // // [END readMessageData]
+
+  // // [START messageHttpsErrors]
+  // if (!context.auth) {
+  //   throw new functions.https.HttpsError('failed-precondition', 'The function must be called ' +
+  //       'while authenticated.');
+  // }
+  // // [END messageHttpsErrors]
+
+  // // [START authIntegration]
+  // const uid = context.auth.uid;
+  // const name = context.auth.token.name || null;
+  // const picture = context.auth.token.picture || null;
+  // const email = context.auth.token.email || null;
+  // // [END authIntegration]
+
+  // // [START returnMessageAsync]
+  // const sanitizedMessage = sanitizer.sanitizeText(text); // Sanitize the message.
+
+  // return admin.database().ref('/messages').push({
+  //   text: sanitizedMessage,
+  //   author: { uid, name, picture, email },
+  // }).then(() => {
+  //   console.log('New Message written');
+  //   return { text: sanitizedMessage };
+  // }).catch((error) => {
+  //     throw new functions.https.HttpsError('unknown', error.message, error);
+  //   });
+  // // [END_EXCLUDE]
+
+
 });

@@ -12,19 +12,6 @@ export class AuthService {
 
   userEmail: string = null;
 
-  // Sets user in local storage
-
-
-  //  async login(email: string, password: string) {
-  //   var result = await auth.auth().signInWithEmailAndPassword(email, password)
-  //   this.router.navigate(['admin/list']);
-  // }
-
-  // async register(email: string, password: string) {
-  //   var result = await this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-  //   this.sendEmailVerification();
-  // }
-
   login(email: string, password: string) {
     this.auth.signInWithEmailAndPassword(email, password)
     .then((result) => {
