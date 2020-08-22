@@ -1,26 +1,30 @@
+// Imports
+// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 @import '~@angular/material/theming';
 @include mat-core();
 @import '~animate.css/animate.min';
 @import 'assets/bootstrap-grid.min.css';
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
+// Custom colors
+@import 'colors';
+
+// Material UI Theming
+// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
+
+// Available color palettes: https://material.io/design/color/
 $note-taker-two-primary: mat-palette($mat-indigo);
 $note-taker-two-accent: mat-palette($mat-pink, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
 $note-taker-two-warn: mat-palette($mat-red);
 
-// Create the theme object (a Sass map containing all of the palettes).
 $note-taker-two-theme: mat-light-theme($note-taker-two-primary, $note-taker-two-accent, $note-taker-two-warn);
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
 @include angular-material-theme($note-taker-two-theme);
 
-/* You can add global styles to this file, and also import other style files */
+// Global Styles
+// -------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -29,4 +33,57 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   text-align: center;
 }
 
-// Nice color 127780
+// Custom Outline
+// -------------------------------------------------------------------------------
+
+%custom-outline {
+  border: 2px solid $primary-color;
+  border-radius: 4px;
+}
+
+// Custom Buttons
+// -------------------------------------------------------------------------------
+
+// General Button Style
+%custom-btn-shared {
+  color: $primary-color;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 15px 30px;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.5s;
+  &:active, &:focus, &:hover {
+    border-color: $primary-color;
+    background-color: $primary-color;
+    color: $light-color;
+  }
+}
+
+// Dark Button Style
+.custom-btn {
+  @extend %custom-btn-shared, %custom-outline;
+}
+
+// Dark Button Style w/ Icon
+.custom-btn-icon {
+  @extend %custom-btn-shared, %custom-outline;
+  padding: 5px 30px 15px;
+  .mat-icon {
+    position: relative;
+    top: 5px;
+    margin-left: 7px;
+  }
+}
+
+.custom-btn-white {
+  @extend %custom-btn-shared, %custom-outline;
+  border-color: $light-color;
+  color: $light-color;
+  &:active, &:focus, &:hover {
+    border-color: $light-color;
+    background-color: $light-color;
+    color: $primary-color;
+  }
+}
