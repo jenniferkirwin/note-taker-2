@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-editor',
@@ -10,9 +11,41 @@ import { Component, OnInit } from '@angular/core';
 
 export class EditorComponent implements OnInit {
 
-  constructor() { }
+  note: string;
+
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(EditorComponentModal, {
+      width: '250px',
+      data: {note: this.note}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.note = result;
+    });
+  }
+
+}
+
+@Component({
+  selector: 'editor.component.modal',
+  templateUrl: 'editor.component.modal.html',
+  styleUrls: ['./editor.component.scss']
+})
+
+export class EditorComponentModal {
+
+  constructor(
+    public dialogRef: MatDialogRef<EditorComponentModal>,
+    @Inject(MAT_DIALOG_DATA) public data: string) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
   paste(event: any) {
