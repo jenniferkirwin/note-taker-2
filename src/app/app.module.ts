@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { EditorComponent } from './components/editor/editor.component';
+import { EditorComponent, EditorComponentModal } from './components/editor/editor.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
@@ -30,6 +30,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     AppComponent,
     NavigationComponent,
     EditorComponent,
+    EditorComponentModal,
     LoginComponent,
     NavbarComponent
   ],
@@ -58,6 +60,11 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatButtonModule,
     MatCardModule,
     MatTabsModule,
+    MatDialogModule,
+  ],
+  entryComponents: [
+    EditorComponent, 
+    EditorComponentModal,
   ],
   providers: [LoginPopupService],
   bootstrap: [AppComponent]
