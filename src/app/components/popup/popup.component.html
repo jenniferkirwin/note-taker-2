@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>{{data.name}}</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <!-- <mat-label>Favorite Animal</mat-label> -->
+    <textarea  matInput [(ngModel)]="data.animal">{{data.name}}</textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button class="custom-btn-icon" [mat-dialog-close]="data.animal"  cdkFocusInitial>Save & Close <mat-icon aria-hidden="false" aria-label="">save</mat-icon></button>
+  <button class="custom-btn-icon" (click)="onNoClick()">Discard Changes <mat-icon aria-hidden="false" aria-label="">undo</mat-icon></button>
+  <button class="custom-btn-icon" (click)="onNoClick()">Delete <mat-icon aria-hidden="false" aria-label="">delete_forever</mat-icon></button>
+</div>

@@ -33,12 +33,27 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   text-align: center;
 }
 
+// Custom Jumbotron
+// -------------------------------------------------------------------------------
+.jumbotron {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 // Custom Outline
 // -------------------------------------------------------------------------------
 
 %custom-outline {
   border: 2px solid $primary-color;
   border-radius: 4px;
+}
+
+.custom-outline {
+  @extend %custom-outline;
 }
 
 // Custom Buttons

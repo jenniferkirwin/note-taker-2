@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 jumbotron">
+      <h2>Your Notes</h2>
+      <button class="custom-btn-icon" (click)="openDialog(0)">New Note <mat-icon aria-hidden="false" aria-label="">add_circle</mat-icon></button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div cdkDropList class="note-container-parent" (cdkDropListDropped)="drop($event)">
+        <div class="row note-container custom-outline" *ngFor="let note of notes;let indexOfelement=index;" cdkDrag>
+          <div class="col-sm-12">
+            <div class="custom-placeholder custom-outline" *cdkDragPlaceholder></div>
+          </div>
+          <div class="col-12 col-sm-9 col-md-10 col-lg-11 note-content">
+            {{note}}
+          </div>
+          <div class="col-12 col-sm-3 col-md-2 col-lg-1 note-icons">
+            <button mat-icon-button (click)="openDialog(indexOfelement)"><mat-icon aria-hidden="false" aria-label="">edit</mat-icon></button>
+            <button mat-icon-button><mat-icon aria-hidden="false" aria-label="">delete_forever</mat-icon></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

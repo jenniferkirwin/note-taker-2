@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { environment } from '../environments/environment';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { EditorComponent, EditorComponentModal } from './components/editor/editor.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { NoteboardComponent } from './components/noteboard/noteboard.component';
 
 import { LoginPopupService } from './service/login-popup.service';
 
@@ -31,6 +33,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { PopupComponent } from './components/popup/popup.component';
+
 
 
 @NgModule({
@@ -40,7 +45,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     EditorComponent,
     EditorComponentModal,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    NoteboardComponent,
+    PopupComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -61,6 +68,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCardModule,
     MatTabsModule,
     MatDialogModule,
+    DragDropModule,
+    FormsModule,
   ],
   entryComponents: [
     EditorComponent, 
