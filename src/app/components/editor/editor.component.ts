@@ -48,7 +48,7 @@ export class EditorComponentModal {
     this.dialogRef.close();
   }
 
-  paste(event: any) {
+    paste(event: any) {
     let pastedData:any = event.clipboardData.getData('Text');
     event.preventDefault();
     document.execCommand("insertText", false, pastedData);

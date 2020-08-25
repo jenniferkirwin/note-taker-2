@@ -5,13 +5,13 @@
   <span>Note Taker</span>
   <span class="spacer"></span>
   <div *ngIf="!authService.userEmail">
-    <button mat-flat-button aria-label="Login or Sign up for Note Taker" (click)="loginPopupService.toggleLogin()">
+    <button class="custom-btn-white" aria-label="Login or Sign up for Note Taker" (click)="loginPopupService.toggleLogin()">
       Login / Sign Up
     </button>
   </div>
   <div *ngIf="authService.userEmail">
     <span>Welcome, {{authService.userEmail}}!</span>
-    <button mat-flat-button aria-label="Log Out of Note Taker" (click)="authService.logout()">
+    <button class="custom-btn-white" aria-label="Log Out of Note Taker" (click)="authService.logout()">
       Log Out
     </button>
   </div>
