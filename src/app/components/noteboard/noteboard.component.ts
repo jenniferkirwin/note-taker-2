@@ -4,8 +4,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { PopupComponent } from '../../components/popup/popup.component';
 
 export interface DialogData {
-  animal: string;
-  name: string;
+  note: string;
+  noteIndex: number;
 }
 
 @Component({
@@ -15,21 +15,30 @@ export interface DialogData {
 })
 export class NoteboardComponent implements OnInit {
 
-  animal: string;
-  name: string;
-
   constructor(public dialog: MatDialog) {}
 
   openDialog(noteIndex:number): void {
     const dialogRef = this.dialog.open(PopupComponent, {
       width: '100%',
-      data: {name: this.notes[noteIndex], animal: this.animal}
+      data: {note: this.notes[noteIndex], noteIndex: noteIndex}
     });
 
+    const test = () => {console.log('TEST')};
+
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
+      if (!result.note && !result.delete) {
+        return;
+      };
+      if (!result.note && result.delete) {
+        this.deleteNote(noteIndex);
+        return;
+      }
+      this.notes[noteIndex] = result.note;
     });
+  }
+
+  deleteNote(arrayIndex:number) {
+    this.notes.splice(arrayIndex, 1);
   }
 
   ngOnInit(): void {

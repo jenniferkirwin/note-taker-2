@@ -2,8 +2,8 @@ import {Component, Inject} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 export interface DialogData {
-  animal: string;
-  name: string;
+  noteIndex: number;
+  note: string | undefined;
 }
 
 @Component({
@@ -13,12 +13,25 @@ export interface DialogData {
 })
 export class PopupComponent {
 
+  warning:boolean = false;
+
   constructor(
     public dialogRef: MatDialogRef<PopupComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+      dialogRef.disableClose = true;
+    }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  onDelete() {
+    this.warning = true;
+  }
+
+  confirmDelete() {
+    console.log('Delete Works');
+    this.onNoClick();
   }
 
 }
