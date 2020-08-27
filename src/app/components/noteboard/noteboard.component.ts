@@ -19,18 +19,23 @@ export class NoteboardComponent implements OnInit {
 
   warning:number = -1;
 
-  openDialog(noteIndex:number): void {
+  editNote(noteIndex:number): void {
     const dialogRef = this.dialog.open(PopupComponent, {
       width: '100%',
       data: {note: this.notes[noteIndex], noteIndex: noteIndex}
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
       if (!result.note && !result.delete) {
         return;
       };
       if (!result.note && result.delete) {
         this.deleteNote(noteIndex);
+        return;
+      }
+      if (noteIndex === this.notes.length) {
+        this.notes.unshift(result.note);
         return;
       }
       this.notes[noteIndex] = result.note;
