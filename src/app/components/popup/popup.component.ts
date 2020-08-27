@@ -30,7 +30,6 @@ export class PopupComponent {
   }
 
   confirmDelete() {
-    console.log('Delete Works');
     this.onNoClick();
   }
 
