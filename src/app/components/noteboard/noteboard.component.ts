@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PopupComponent } from '../../components/popup/popup.component';
@@ -17,13 +17,13 @@ export class NoteboardComponent implements OnInit {
 
   constructor(public dialog: MatDialog) {}
 
+  warning:number = -1;
+
   openDialog(noteIndex:number): void {
     const dialogRef = this.dialog.open(PopupComponent, {
       width: '100%',
       data: {note: this.notes[noteIndex], noteIndex: noteIndex}
     });
-
-    const test = () => {console.log('TEST')};
 
     dialogRef.afterClosed().subscribe(result => {
       if (!result.note && !result.delete) {
@@ -37,8 +37,17 @@ export class NoteboardComponent implements OnInit {
     });
   }
 
-  deleteNote(arrayIndex:number) {
-    this.notes.splice(arrayIndex, 1);
+  confirmDelete(elementIndex:number) {
+    this.warning = elementIndex
+  }
+
+  deleteNote(elementIndex:number) {
+    this.notes.splice(elementIndex, 1);
+    this.dismissDelete();
+  }
+
+  dismissDelete() {
+    this.warning = -1;
   }
 
   ngOnInit(): void {

@@ -12,12 +12,18 @@
           <div class="col-sm-12">
             <div class="custom-placeholder custom-outline" *cdkDragPlaceholder></div>
           </div>
-          <div class="col-12 col-sm-9 col-md-10 col-lg-11 note-content">
+          <div class="col-12 col-sm-12 col-md-8 col-lg-9 note-content">
             {{note}}
           </div>
-          <div class="col-12 col-sm-3 col-md-2 col-lg-1 note-icons">
-            <button mat-icon-button (click)="openDialog(indexOfelement)"><mat-icon aria-hidden="false" aria-label="">edit</mat-icon></button>
-            <button mat-icon-button><mat-icon aria-hidden="false" aria-label="">delete_forever</mat-icon></button>
+          <div class="col-12 col-sm-12 col-md-4 col-lg-3 note-icons">
+            <ng-template [ngIf]="warning!==indexOfelement">
+              <button mat-icon-button (click)="openDialog(indexOfelement)"><mat-icon aria-hidden="false" aria-label="">edit</mat-icon></button>
+              <button mat-icon-button (click)="confirmDelete(indexOfelement)"><mat-icon aria-hidden="false" aria-label="">delete</mat-icon></button>
+            </ng-template >
+            <ng-template  [ngIf]="warning===indexOfelement">
+              <button mat-button (click)="dismissDelete()">Never Mind <mat-icon aria-hidden="false" aria-label="">undo</mat-icon></button>
+              <button mat-button (click)="deleteNote(indexOfelement)">Confirm Delete <mat-icon aria-hidden="false" aria-label="">delete_forever</mat-icon></button>
+            </ng-template>            
           </div>
         </div>
       </div>
