@@ -1,12 +1,17 @@
-<h1 mat-dialog-title>{{data.name}}</h1>
+<!-- <h1 mat-dialog-title>{{data.note}}</h1> -->
 <div mat-dialog-content>
+  {{data.note}}
+  {{data.note}}
+  {{data.note}}
   <mat-form-field>
-    <!-- <mat-label>Favorite Animal</mat-label> -->
-    <textarea  matInput [(ngModel)]="data.animal">{{data.name}}</textarea>
+    <mat-label>Write a Note</mat-label>
+    <textarea  matInput [(ngModel)]="data.note">{{data.note}}</textarea>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button class="custom-btn-icon" [mat-dialog-close]="data.animal"  cdkFocusInitial>Save & Close <mat-icon aria-hidden="false" aria-label="">save</mat-icon></button>
-  <button class="custom-btn-icon" (click)="onNoClick()">Discard Changes <mat-icon aria-hidden="false" aria-label="">undo</mat-icon></button>
-  <button class="custom-btn-icon" (click)="onNoClick()">Delete <mat-icon aria-hidden="false" aria-label="">delete_forever</mat-icon></button>
+  <!-- <button class="custom-btn-icon" [mat-dialog-close]="data.animal"  cdkFocusInitial>Save & Close <mat-icon aria-hidden="false" aria-label="">save</mat-icon></button> -->
+  <button class="custom-btn-icon" [mat-dialog-close]="{note:data.note,delete:false}" cdkFocusInitial>Save & Close <mat-icon aria-hidden="false" aria-label="">save</mat-icon></button>
+  <button class="custom-btn-icon" [mat-dialog-close]="{note:undefined,delete:false}">Discard Changes <mat-icon aria-hidden="false" aria-label="">undo</mat-icon></button>
+  <button class="custom-btn-icon" (click)="onDelete()">Delete <mat-icon aria-hidden="false" aria-label="">delete_forever</mat-icon></button>
+  <div *ngIf="warning"><button class="custom-btn-icon" [mat-dialog-close]="{note:undefined,delete:true}">Confirm Delete <mat-icon aria-hidden="false" aria-label="">delete_forever</mat-icon></button></div>
 </div>
