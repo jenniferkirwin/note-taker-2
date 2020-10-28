@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PopupComponent } from '../../components/popup/popup.component';
@@ -19,7 +19,7 @@ export interface DialogData {
 })
 export class NoteboardComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, public dataService: DataqueryService) {}
+  constructor(public dialog: MatDialog, public dataService: DataqueryService, private ngZone: NgZone) {}
 
   warning:number = -1;
   tests:string[] = [];
@@ -83,17 +83,19 @@ export class NoteboardComponent implements OnInit {
     this.dataService.callable({ action: "Data Pull" })
     .subscribe(resp => {
       console.log( resp.notes );
-      this.notes = [...resp.notes];
+      this.ngZone.run( () => this.notes = [...resp.notes]);
     }, err => {
       console.error( err );
     });
   }
 
-  // pullData() {
-  //   let myTest = this.dataService.pullData();
-  //   console.log(`${myTest} WORKED`)
-  // }
-
-  
+  setData() {
+    this.dataService.callable2(this.notes)
+    .subscribe(resp => {
+      console.log( resp );
+    }, err => {
+      console.error( err );
+    });
+  }  
 
 }

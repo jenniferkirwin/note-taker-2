@@ -11,6 +11,11 @@ export class DataqueryService {
   constructor(private firebase: AngularFireFunctions) { }
 
   callable = this.firebase.httpsCallable('getNotes');
+  callable2 = this.firebase.httpsCallable('setNotes');
+
+  setData(updatedNotes:string[]) {
+    this.firebase.httpsCallable('setNotes')(updatedNotes);
+  }
 
   pullData() {
     return this.firebase.httpsCallable('getNotes')({ action: "Data Pull" })
