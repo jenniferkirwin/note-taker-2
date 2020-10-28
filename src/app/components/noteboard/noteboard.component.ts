@@ -2,6 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PopupComponent } from '../../components/popup/popup.component';
+import { DataqueryService } from '../../service/dataquery.service';
+import { TestBed } from '@angular/core/testing';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 export interface DialogData {
   note: string;
@@ -15,9 +19,10 @@ export interface DialogData {
 })
 export class NoteboardComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, public dataService: DataqueryService) {}
 
   warning:number = -1;
+  tests:string[] = [];
 
   editNote(noteIndex:number): void {
     const dialogRef = this.dialog.open(PopupComponent, {
@@ -73,5 +78,22 @@ export class NoteboardComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.notes, event.previousIndex, event.currentIndex);
   }
+
+  pullData() {
+    this.dataService.callable({ action: "Data Pull" })
+    .subscribe(resp => {
+      console.log( resp.notes );
+      this.notes = [...resp.notes];
+    }, err => {
+      console.error( err );
+    });
+  }
+
+  // pullData() {
+  //   let myTest = this.dataService.pullData();
+  //   console.log(`${myTest} WORKED`)
+  // }
+
+  
 
 }

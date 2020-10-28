@@ -1,11 +1,13 @@
 // Requires
 // -------------------------------------------------------------------------
 // -------------------------------------------------------------------------
-const firebase = require("firebase");
+// const firebase = require("firebase");
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 
 admin.initializeApp();
+
+const db = admin.firestore();
 
 // Callable Functions
 // -------------------------------------------------------------------------
@@ -41,53 +43,20 @@ exports.getNotes = functions.https.onCall((data, context) => {
         'while authenticated.');
   }
 
-  // Constants
-
   // Query Database
 
-  db.collection('users').doc(`${context.auth.uid}`)
+  return db.collection('users').doc(`${context.auth.uid}`)
   .get()
   .then((querySnapshot) => {
-    console.log(querySnapshot)
-    return querySnapshot;
+    console.log(querySnapshot.data())
+    return querySnapshot.data();
   })
   .catch((error) => {
       console.log("Error getting documents: ", error);
       return error;
   });
 
-
-  // // [START readMessageData]
-  // const text = data.text;
-  // // [END readMessageData]
-
-  // // [START messageHttpsErrors]
-  // if (!context.auth) {
-  //   throw new functions.https.HttpsError('failed-precondition', 'The function must be called ' +
-  //       'while authenticated.');
-  // }
-  // // [END messageHttpsErrors]
-
-  // // [START authIntegration]
-  // const uid = context.auth.uid;
-  // const name = context.auth.token.name || null;
-  // const picture = context.auth.token.picture || null;
-  // const email = context.auth.token.email || null;
-  // // [END authIntegration]
-
-  // // [START returnMessageAsync]
-  // const sanitizedMessage = sanitizer.sanitizeText(text); // Sanitize the message.
-
-  // return admin.database().ref('/messages').push({
-  //   text: sanitizedMessage,
-  //   author: { uid, name, picture, email },
-  // }).then(() => {
-  //   console.log('New Message written');
-  //   return { text: sanitizedMessage };
-  // }).catch((error) => {
-  //     throw new functions.https.HttpsError('unknown', error.message, error);
-  //   });
-  // // [END_EXCLUDE]
-
-
 });
+
+// Update Notes
+// -------------------------------------------------------------------------

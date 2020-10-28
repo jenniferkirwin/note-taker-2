@@ -21,6 +21,9 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFireAuthGuardModule } from "@angular/fire/auth-guard";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
+//Firebase Functions
+import { AngularFireFunctionsModule } from '@angular/fire/functions';
+
 // Material UI Components
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -54,6 +57,7 @@ import { PopupComponent } from './components/popup/popup.component';
     AngularFireAuthModule,
     AngularFireAuthGuardModule,
     AngularFirestoreModule,
+    AngularFireFunctionsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
