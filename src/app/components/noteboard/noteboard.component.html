@@ -4,6 +4,15 @@
       <h2>Your Notes</h2>
       <button class="custom-btn-icon" (click)="editNote(notes.length)">New Note <mat-icon aria-hidden="false" aria-label="">add_circle</mat-icon></button>
     </div>
+    <div class="col-12 jumbotron">
+      <button class="custom-btn-icon" (click)="pullData()">TEST</button>
+    </div>
+
+      <div *ngFor="let test of tests">
+        <h1>{{test}}</h1>
+      </div>
+
+
   </div>
   <div class="row">
     <div class="col-sm-12">
