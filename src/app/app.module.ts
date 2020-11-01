@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { environment } from '../environments/environment';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -74,6 +74,7 @@ import { PopupComponent } from './components/popup/popup.component';
     MatDialogModule,
     DragDropModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   entryComponents: [
     EditorComponent, 

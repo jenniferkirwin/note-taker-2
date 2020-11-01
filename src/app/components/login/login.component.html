@@ -24,10 +24,10 @@
               <button mat-flat-button color="primary" (click)="authService.login(userEmail.value, userPassword.value)">Login</button>
             </mat-tab>
             <mat-tab label="Create Account">
-              <form class="login-tab">
+              <form class="login-tab" [formGroup]="newUser">
                 <mat-form-field class="full-width">
                   <mat-label>E-Mail</mat-label>
-                  <input matInput #newUserEmail placeholder="Ex. hello@mail.com" required>
+                  <input matInput formControlName="newUserEmail" #newUserEmail placeholder="Ex. hello@mail.com" required>
                 </mat-form-field>
                 <mat-form-field class="full-width">
                   <mat-label>Password</mat-label>
