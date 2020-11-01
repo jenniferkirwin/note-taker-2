@@ -60,3 +60,27 @@ exports.getNotes = functions.https.onCall((data, context) => {
 
 // Update Notes
 // -------------------------------------------------------------------------
+
+exports.setNotes = functions.https.onCall((data, context) => {
+
+  // Ensure user is authenticated
+  if (!context.auth) {
+    throw new functions.https.HttpsError('failed-precondition', 'The function must be called ' +
+        'while authenticated.');
+  }
+
+  // Query Database
+
+  console.log(data);
+  return data;
+
+  // return db.collection('users').doc(`${context.auth.uid}`)
+  // .set({
+  //   notes: data.notes
+  // })
+  // .catch((error) => {
+  //     console.log("Error getting documents: ", error);
+  //     return error;
+  // });
+
+});
