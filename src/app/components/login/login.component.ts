@@ -12,26 +12,49 @@ export class LoginComponent {
 
   constructor(public authService: AuthService, public loginPopupService: LoginPopupService) {}
 
-  newUser;
+  NewUserForm:FormGroup;
 
   ngOnInit(): void {
-    this.newUser = new FormGroup({
 
-      newUserEmail: new FormControl("", Validators.minLength(2))
+    this.NewUserForm = new FormGroup({
+      'newUserEmail': new FormControl(
+        null,
+        [
+          Validators.required,
+          Validators.email
+        ]),
+      'newUserPassword': new FormControl(
+        null,
+        [
+          Validators.required
+        ])
+    });
 
-      // name: new FormControl(this.hero.name, [
-      //   Validators.required,
-      //   Validators.minLength(4),
-      //   forbiddenNameValidator(/bob/i) // <-- Here's how you pass in the custom validator.
-      // ]),
-      // alterEgo: new FormControl(this.hero.alterEgo),
-      // power: new FormControl(this.hero.power, Validators.required)
+    this.NewUserForm.setValue({
+      'newUserEmail':'',
+      'newUserPassword':''
     });
   
+  };
+
+
+
+  retrieveErrors() {
+
+    let errors = this.NewUserForm.get('newUserEmail').errors;
+
+    if (errors.required) {
+      return 'This can not be blank!'
+    }
+
+    else if (errors.email) {
+      return 'Enter a valid email!'
+    }
+
+  };
+
+  clicked() {
+    console.log(this.NewUserForm.get('newUserEmail').errors)
   }
-  
-  // get name() { return this.heroForm.get('name'); }
-  
-  // get power() { return this.heroForm.get('power'); }
 
 }
