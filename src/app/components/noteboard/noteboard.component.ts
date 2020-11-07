@@ -4,8 +4,10 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { PopupComponent } from '../../components/popup/popup.component';
 import { DataqueryService } from '../../service/dataquery.service';
 import { TestBed } from '@angular/core/testing';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { AngularFireFunctions } from '@angular/fire/functions';
+import { AuthService } from '../../service/auth.service';
 
 export interface DialogData {
   note: string;
@@ -19,10 +21,25 @@ export interface DialogData {
 })
 export class NoteboardComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, public dataService: DataqueryService, private ngZone: NgZone) {}
+  constructor(public authService: AuthService, public dialog: MatDialog, public dataService: DataqueryService, private ngZone: NgZone) {
+
+  }
+
+  notes = [
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    'Episode II - Attack of the Clones',
+    'Episode III - Revenge of the Sith',
+    'Episode IV - A New Hope',
+    'Episode V - The Empire Strikes Back',
+    'Episode VI - Return of the Jedi',
+    'Episode VII - The Force Awakens',
+    'Episode VIII - The Last Jedi',
+    'Episode IX – The Rise of Skywalker'
+  ];
 
   warning:number = -1;
-  tests:string[] = [];
+  private testEmitter = new BehaviorSubject<Array<any>>(this.notes);
+  currentData = this.testEmitter.asObservable();
 
   editNote(noteIndex:number): void {
     const dialogRef = this.dialog.open(PopupComponent, {
@@ -63,20 +80,15 @@ export class NoteboardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  notes = [
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    'Episode II - Attack of the Clones',
-    'Episode III - Revenge of the Sith',
-    'Episode IV - A New Hope',
-    'Episode V - The Empire Strikes Back',
-    'Episode VI - Return of the Jedi',
-    'Episode VII - The Force Awakens',
-    'Episode VIII - The Last Jedi',
-    'Episode IX – The Rise of Skywalker'
-  ];
+
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.notes, event.previousIndex, event.currentIndex);
+  }
+
+  myData() {
+    var myTest = this.dataService.pullData();
+    console.log(myTest);
   }
 
   pullData() {
@@ -86,6 +98,7 @@ export class NoteboardComponent implements OnInit {
       this.ngZone.run( () => this.notes = [...resp.notes]);
     }, err => {
       console.error( err );
+      alert("Unable to Pull Data");
     });
   }
 
