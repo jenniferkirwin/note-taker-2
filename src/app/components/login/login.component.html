@@ -24,8 +24,7 @@
               <button mat-flat-button color="primary" (click)="authService.login(userEmail.value, userPassword.value)">Login</button>
             </mat-tab>
             <mat-tab label="Create Account">
-              <form class="login-tab" [formGroup]="NewUserForm">
-
+              <form class="login-tab" [formGroup]="NewUserForm" (ngSubmit)="onSubmit()">
                   <mat-form-field class="full-width">
                     <mat-label>E-Mail</mat-label>
                     <input formControlName="newUserEmail" matInput placeholder="Ex. hello@mail.com" required>
@@ -39,10 +38,7 @@
                     <mat-label>Verify Password</mat-label>
                     <input matInput #newUserPassword2 placeholder="Ex. $uper$ecret123!" type="password" required>
                   </mat-form-field>
-
-                  <!-- <button mat-flat-button color="primary" (click)="authService.createUser(newUserEmail.value, newUserPassword.value)">Create Account</button> -->
-                  <button mat-flat-button color="primary" (click)="clicked()">Click Button</button>
-
+                  <button mat-flat-button color="primary" type="submit" [disabled]="!NewUserForm.valid">Click Button</button>
               </form>
 
             </mat-tab>
