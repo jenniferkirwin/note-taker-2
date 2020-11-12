@@ -15,8 +15,10 @@ export class AuthService {
 
   constructor(public auth: AngularFireAuth, public  router:  Router, public loginPopupService: LoginPopupService) {
     
-    // See if user is logged in already when starting the application
-    
+// See if user is logged in already when starting the application
+// --------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------
+
     this.authState = this.auth.authState;
     this.authState.subscribe(user => {
       if (user) {
@@ -29,7 +31,11 @@ export class AuthService {
       err => {
         console.log('ERROR', err)
       });
-  }  
+  }
+
+// Logs in a user
+// --------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------
 
   login(email: string, password: string) {
     this.auth.signInWithEmailAndPassword(email, password)
@@ -52,6 +58,10 @@ export class AuthService {
     });
   }
 
+// Creates a new user
+// --------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------
+
   createUser(email: string, password: string) {
     this.auth.createUserWithEmailAndPassword(email, password)
     .then((result) => {
@@ -60,7 +70,6 @@ export class AuthService {
       this.loginPopupService.toggleLogin();
     })
     .catch(function(error) {
-      // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
       if (errorCode === 'auth/wrong-password') {
@@ -71,6 +80,10 @@ export class AuthService {
       console.log(error);
     });
   }
+
+// Logs out user
+// --------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------
 
   logout() {
     this.auth.signOut()
@@ -84,26 +97,24 @@ export class AuthService {
     });
   }
 
+// Verify user is logged in
+// --------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------
+
   verifyLogin() {
-
-  }
-
-  getUID() {
-    this.auth.onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in.
-        var displayName = user.displayName;
-        var email = user.email;
-        var emailVerified = user.emailVerified;
-        var photoURL = user.photoURL;
-        var isAnonymous = user.isAnonymous;
-        var uid = user.uid;
-        var providerData = user.providerData;
-        // ...
-      } else {
-        // User is signed out.
-        // ...
-      }
-    });
+      let myAuthState = this.auth.authState;
+      myAuthState.subscribe(user => {
+        if (user) {
+          console.log(user);
+          return true;
+        } else {
+          console.log('AUTHSTATE USER EMPTY', user);
+          return false;
+        }
+      },
+        err => {
+          console.log('ERROR', err);
+          return false;
+        });
   }
 }

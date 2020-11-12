@@ -12,6 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NoteboardComponent } from './components/noteboard/noteboard.component';
 
+import { AuthService } from './service/auth.service';
 import { LoginPopupService } from './service/login-popup.service';
 
 
@@ -80,7 +81,10 @@ import { PopupComponent } from './components/popup/popup.component';
     EditorComponent, 
     EditorComponentModal,
   ],
-  providers: [LoginPopupService],
+  providers: [
+    AuthService,
+    LoginPopupService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

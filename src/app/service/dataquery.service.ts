@@ -2,13 +2,18 @@ import { Injectable } from '@angular/core';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { AuthService } from '../service/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataqueryService {
 
-  constructor(private firebase: AngularFireFunctions) { }
+  userNotes:string[] = null;
+
+  constructor(private firebase: AngularFireFunctions, public authService: AuthService) {
+    authService.verifyLogin();
+   }
 
   callable = this.firebase.httpsCallable('getNotes');
   callable2 = this.firebase.httpsCallable('setNotes');
