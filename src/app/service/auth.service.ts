@@ -2,15 +2,34 @@ import { Injectable } from '@angular/core';
 import { Router } from  "@angular/router";
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoginPopupService } from './login-popup.service';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(public auth: AngularFireAuth, public  router:  Router, public loginPopupService: LoginPopupService) {}
-
+  private authState: Observable<firebase.User>
   userEmail: string = null;
+
+  constructor(public auth: AngularFireAuth, public  router:  Router, public loginPopupService: LoginPopupService) {
+    
+    // See if user is logged in already when starting the application
+    
+    this.authState = this.auth.authState;
+    this.authState.subscribe(user => {
+      if (user) {
+        this.userEmail = user.email;
+      } else {
+        console.log('AUTHSTATE USER EMPTY', user)
+        this.userEmail = null;
+      }
+    },
+      err => {
+        console.log('ERROR', err)
+      });
+  }  
 
   login(email: string, password: string) {
     this.auth.signInWithEmailAndPassword(email, password)
