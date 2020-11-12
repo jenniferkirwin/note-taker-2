@@ -53,8 +53,9 @@ export class LoginComponent {
 
   };
 
-  clicked() {
-    console.log(this.NewUserForm.get('newUserEmail').errors)
+  onSubmit() {
+    const {newUserEmail, newUserPassword} = this.NewUserForm.value
+    this.authService.createUser(newUserEmail, newUserPassword)
   }
 
 }

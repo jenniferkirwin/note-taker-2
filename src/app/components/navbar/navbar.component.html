@@ -1,7 +1,7 @@
 <mat-toolbar color="primary" class="navbar">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
-  </button>
+  </button> -->
   <span>Note Taker</span>
   <span class="spacer"></span>
   <div *ngIf="!authService.userEmail">
@@ -10,7 +10,7 @@
     </button>
   </div>
   <div *ngIf="authService.userEmail">
-    <span>Welcome, {{authService.userEmail}}!</span>
+    <span class="user-email">Welcome, {{authService.userEmail}}!</span>
     <button class="custom-btn-white" aria-label="Log Out of Note Taker" (click)="authService.logout()">
       Log Out
     </button>

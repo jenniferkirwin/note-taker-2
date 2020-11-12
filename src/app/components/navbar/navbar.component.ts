@@ -14,6 +14,4 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  test = localStorage.getItem('email');
-
 }
